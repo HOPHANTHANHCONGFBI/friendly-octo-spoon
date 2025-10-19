@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 20/10 11B14 💖</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle at top, #ffe6f0, #ffd1dc, #ffb6c1);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Comic Sans MS", cursive;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    color: #ff66b3;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff66b3;
+    animation: glow 2s infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #fff, 0 0 20px #ff66b3; }
+    to { text-shadow: 0 0 20px #ff99cc, 0 0 30px #ff66b3; }
+  }
+
+  .message {
+    font-size: 1.4em;
+    color: #ff3399;
+    margin: 10px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-10vh) scale(1); opacity: 1; }
+    100% { transform: translateY(110vh) scale(0.5); opacity: 0; }
+  }
+
+  .btn {
+    background: linear-gradient(45deg, #ff66b3, #ff99cc);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 0 10px #ff99cc;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #ff66b3;
+  }
+</style>
+</head>
+<body>
+
+<h1>💐 CHÚC MỪNG NGÀY 20/10 💐</h1>
+<div id="messages"></div>
+<button class="btn" onclick="launchFireworks()">💝 Tặng Hoa 💝</button>
+
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/09/11/audio_33c1cce0a3.mp3?filename=tinh-ban-dieu-ky.mp3" type="audio/mpeg">
+</audio>
+<button class="btn" onclick="toggleMusic()">🎶 Bật/Tắt Nhạc</button>
+
+<script>
+const messages = [
+  "🌸 20/10 đến rồi, chúc các bạn nữ lớp 11B14:",
+  "🏅 Học tập: luôn top đầu bảng điểm, bài nào cũng “easy”! 🎓",
+  "🏃‍♀️ Thể thao: chạy nhanh, nhảy cao, đánh bóng siêu đỉnh! 💪",
+  "💕 Cuộc sống: luôn tươi tắn, rạng rỡ, và đáng yêu hết nấc! 🌼",
+  "💖 11B14 – đẹp người, giỏi việc, ai nhìn cũng mê 😍"
+];
+
+const container = document.getElementById("messages");
+let index = 0;
+
+function showMessage() {
+  if (index < messages.length) {
+    const msg = document.createElement("div");
+    msg.className = "message";
+    msg.style.animationDelay = `${index * 1}s`;
+    msg.innerText = messages[index];
+    container.appendChild(msg);
+    index++;
+    setTimeout(showMessage, 2000);
+  }
+}
+showMessage();
+
+// 💕 Mưa trái tim
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+  heart.style.fontSize = 15 + Math.random() * 25 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 150);
+
+// 🎆 Pháo hoa
+function launchFireworks() {
+  for (let i = 0; i < 25; i++) {
+    const heart = document.createElement("div");
+    heart.innerText = "💖";
+    heart.style.position = "absolute";
+    heart.style.left = "50%";
+    heart.style.top = "50%";
+    heart.style.fontSize = Math.random() * 25 + 15 + "px";
+    document.body.appendChild(heart);
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * 200 + 50;
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
+    heart.animate([
+      { transform: "translate(0,0)", opacity: 1 },
+      { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
+    ], { duration: 1500 + Math.random() * 1000, easing: "ease-out" });
+    setTimeout(() => heart.remove(), 2000);
+  }
+}
+
+// 🎶 Nhạc nền
+function toggleMusic() {
+  const music = document.getElementById("music");
+  if (music.paused) music.play();
+  else music.pause();
+}
+</script>
+
+</body>
+</html>
